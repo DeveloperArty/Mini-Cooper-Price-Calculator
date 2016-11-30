@@ -92,6 +92,9 @@
                                 <state key="normal" title="Calculate!">
                                     <color key="titleColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 </state>
+                                <connections>
+                                    <action selector="calculateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iOM-Dc-XoQ"/>
+                                </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGZ-eu-soe">
                                 <rect key="frame" x="0.0" y="560" width="375" height="29"/>
@@ -186,7 +189,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="77.599999999999994" y="94.902548725637189"/>
+            <point key="canvasLocation" x="-68" y="104"/>
         </scene>
     </scenes>
     <resources>
