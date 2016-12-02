@@ -23,12 +23,11 @@ class ViewController: UIViewController {
         
         setupUIElements()
         
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     //MARK: - Additional UI Setup
@@ -48,14 +47,41 @@ class ViewController: UIViewController {
         electricBlueColorSwitch.isOn = false
         vanitySpokeDCWheelsSwitch.isOn = false
         blackNWitheLinesSwitch.isOn = false
+        
+        okButton.backgroundColor = UIColor.cyan
+        okButton.layer.cornerRadius = 8
+        okButton.setTitleColor(UIColor.black, for: .normal)
     }
     
     //MARK: - UI Events
+    @IBOutlet weak var basicPriceLabel: UILabel!
+    @IBOutlet weak var additionsPriceLabel: UILabel!
+    @IBOutlet weak var additionsDiscountedPriceLabel: UILabel!
+    @IBOutlet weak var finalPriceLabel: UILabel!
+    @IBOutlet weak var okButton: UIButton!
+    
+    let calculates = Calculates()
     
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
+        
+        let finalCarPrice = calculates.calculatePrice(wiredSwitchStatus: wiredPackSwitch.isOn, colorSwitchStatus: electricBlueColorSwitch.isOn, wheelsSwitchStatus: vanitySpokeDCWheelsSwitch.isOn
+            , linesSwitchStatus: blackNWitheLinesSwitch.isOn)
+        let additionalsPrice = Double(finalCarPrice - calculates.basicCarPrice)
+        let additionalsDiscountedPrice = Int(additionalsPrice * calculates.discount)
+        
+        basicPriceLabel.text = "Цена в базовой комплектации: \(calculates.basicCarPrice)₽"
+        additionsPriceLabel.text = "Дополнительное оборудование: \(Int(additionalsPrice))₽"
+        additionsDiscountedPriceLabel.text = "Ваша скидка на доп. оборудование : \(Int(100-calculates.discount*100))%"
+        finalPriceLabel.text = "Итоговая цена: \(calculates.basicCarPrice + additionalsDiscountedPrice)₽"
+
         calculatesView.isHidden = false
         
     }
+    
+    @IBAction func okButtonPressed(_ sender: UIButton) {
+        calculatesView.isHidden = true 
+    }
+    
     
     
 }

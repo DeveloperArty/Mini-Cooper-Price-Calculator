@@ -14,6 +14,7 @@ struct Calculates {
     let electricBlueColorPrice: Int = 30000
     let vanitySpokeWheelsPrice: Int = 96500
     let linesPrice: Int = 7800
+    let discount: Double = 9/10
     
     func calculatePrice(wiredSwitchStatus: Bool, colorSwitchStatus: Bool, wheelsSwitchStatus: Bool, linesSwitchStatus: Bool) -> Int {
         var finalPrice = basicCarPrice
